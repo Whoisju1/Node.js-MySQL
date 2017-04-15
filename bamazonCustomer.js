@@ -68,6 +68,7 @@ function chooseProduct() {
             if (idInput > results[0].item_id) {
                 console.log("Insufficient quantity!");
             } else {
+                // TODO: subtract amount inputed from the product quanitity of product selected by user
                 // connection.query("SELECT ")
                 console.log("item id: " + results[0].item_id + "\n" + "Product Name: " + results[0].product_name);
             }
