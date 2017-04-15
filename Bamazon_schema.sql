@@ -19,7 +19,6 @@ INSERT INTO products VALUES (8, "For Honor", "Games", 99.00, 61);
 INSERT INTO products VALUES (9, "Alalisien-R", "Shoes", 125.00, 38);
 INSERT INTO products VALUES (10, "Kong: Skull Island", "Movies", 11.95, 38);
 
-select * from products;
 
 
 
