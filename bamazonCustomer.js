@@ -60,23 +60,20 @@ function chooseProduct() {
     }]).then(function(answer) {
         var idInput = answer.id_number,
             quantityInput = answer.purchase_quantity;
-        console.log(quantityInput);
+        console.log("Quantity Input: " + quantityInput);
         //select specific columns based on the users product ID selection
-        connection.query("SELECT item_id, product_name from products WHERE products.item_id = " + idInput, function(err, results) {
+        connection.query("SELECT * from products WHERE products.item_id = " + idInput, function(err, results) {
             if (err) throw err;
-
-            if (idInput > results[0].item_id) {
+            var productQuantity = results[0].stock_quanitiy,
+                productName = results[0].product_name,
+                itemId = results[0].item_id,
+                price = results[0].price;
+            console.log("Your amount is $" + price * quantityInput);
+            if (quantityInput > productQuantity) {
                 console.log("Insufficient quantity!");
             } else {
-                // TODO: subtract amount inputed from the product quanitity of product selected by user
-                // connection.query("SELECT ")
-                console.log("item id: " + results[0].item_id + "\n" + "Product Name: " + results[0].product_name);
+                connection.query('SELECT * FROM `products` WHERE `item_id` = ?', [3], function(error, results, fields) {});
             }
         });
-
-
-
-
-
     });
 }
