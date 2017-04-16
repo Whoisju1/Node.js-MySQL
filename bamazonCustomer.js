@@ -37,7 +37,6 @@ connection.query("SELECT item_id, product_name, price FROM products", function(e
         arr.push(item.item_id);
         arr.push(item.product_name);
         arr.push("$" + item.price);
-        // console.log(arr);
         newArr.push(arr);
     });
 
@@ -60,19 +59,18 @@ function chooseProduct() {
     }]).then(function(answer) {
         var idInput = answer.id_number,
             quantityInput = answer.purchase_quantity;
-        console.log("Quantity Input: " + quantityInput);
         //select specific columns based on the users product ID selection
         connection.query("SELECT * from products WHERE products.item_id = " + idInput, function(err, results) {
-            if (err) throw err;
+            if (err) throw err;;
             var productQuantity = results[0].stock_quanitiy,
                 productName = results[0].product_name,
                 itemId = results[0].item_id,
                 price = results[0].price;
-            console.log("Your amount is $" + price * quantityInput);
             if (quantityInput > productQuantity) {
                 console.log("Insufficient quantity!");
-            } else {
-                connection.query('SELECT * FROM `products` WHERE `item_id` = ?', [3], function(error, results, fields) {});
+                return;
+            } else if (quantityInput <= productQuantity) {
+                console.log("The cost is $" + price * quantityInput);
             }
         });
     });
