@@ -1,10 +1,10 @@
 USE Bamazon;
 CREATE table products (
-	item_id integer (20) auto_increment,
+	item_id integer NOT NULL AUTO_INCREMENT,
     product_name varchar (100),
     department_name varchar (100),
     price decimal (65, 2),
-    stock_quanitiy integer (65),
+    stock_quantity integer (65),
     primary key (item_id)
     );
     
@@ -18,6 +18,7 @@ INSERT INTO products VALUES (7, "Flutter & Link Friend Take-Along Toy", "Kids", 
 INSERT INTO products VALUES (8, "For Honor", "Games", 99.00, 61);
 INSERT INTO products VALUES (9, "Alalisien-R", "Shoes", 125.00, 38);
 INSERT INTO products VALUES (10, "Kong: Skull Island", "Movies", 11.95, 38);
+
 
 
 

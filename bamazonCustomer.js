@@ -61,8 +61,8 @@ function chooseProduct() {
             quantityInput = answer.purchase_quantity;
         //select specific columns based on the users product ID selection
         connection.query("SELECT * from products WHERE products.item_id = " + idInput, function(err, results) {
-            if (err) throw err;;
-            var productQuantity = results[0].stock_quanitiy,
+            if (err) throw err;
+            var productQuantity = results[0].stock_quantity,
                 productName = results[0].product_name,
                 itemId = results[0].item_id,
                 price = results[0].price;
@@ -71,6 +71,9 @@ function chooseProduct() {
                 return;
             } else if (quantityInput <= productQuantity) {
                 console.log("The cost is $" + price * quantityInput);
+                connection.query("UPDATE products SET stock_quantity = stock_quantity - ? WHERE item_id = ?", [quantityInput, idInput], function(err, results) {
+                    if (err) throw err;
+                });
             }
         });
     });
